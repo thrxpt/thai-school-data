@@ -3,12 +3,16 @@
   "version": "1.0.50",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "scrape": "bun src/scripts/scrape.ts"
   },
   "dependencies": {
+    "@elysiajs/openapi": "^1.4.14",
+    "cheerio": "^1.2.0",
     "elysia": "latest"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.12",
     "bun-types": "latest"
   },
   "module": "src/index.js"
