@@ -55,3 +55,20 @@ const app = new Elysia()
   .listen(3000);
 
 export default app;
+
+if (schools.length === 0) {
+  try {
+    console.log("Fetching data from GitHub...");
+    const response = await fetch(
+      "https://raw.githubusercontent.com/thrxpt/thai-school-data-api/main/dist/schools.min.json",
+    );
+    if (response.ok) {
+      schools = await response.json();
+      console.log(`Loaded ${schools.length} schools from remote.`);
+    } else {
+      console.error("Failed to fetch remote data:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error fetching remote data:", error);
+  }
+}
