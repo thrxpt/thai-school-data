@@ -20,27 +20,9 @@ bun install
 
 ## Usage
 
-### Run API Server
+### Data Preparation
 
-Start the development server:
-
-```bash
-bun dev
-```
-
-The server will be running at `http://localhost:3000`.
-
-#### API Endpoints
-
-- `GET /list`: Retrieve a list of schools for **all** provinces. (Note: This performs multiple requests and may take time).
-- `GET /list/:province`: Retrieve schools for a specific province.
-  - Example: `GET /list/ภูเก็ต`
-- `GET /ping`: Health check.
-- `GET /swagger`: OpenAPI documentation (default Elysia Swagger path).
-
-### Run Scraper Script
-
-To scrape all data and save it locally to the `dist/` directory:
+Before running the API, you must scrape the data from Wikipedia. This will generate the necessary JSON files in the `dist/` directory.
 
 ```bash
 bun run scrape
@@ -53,6 +35,26 @@ bun run scrape
 - `dist/provinces/[province].json`: Individual JSON files for each province (pretty).
 - `dist/provinces/[province].min.json`: Individual JSON files for each province (minified).
 
+### Run API Server
+
+Start the development server:
+
+```bash
+bun dev
+```
+
+The server will be running at `http://localhost:3000`.
+
+#### API Endpoints
+
+- `GET /schools`: Retrieve a list of schools.
+  - Query Parameters:
+    - `q`: Search by school name (optional).
+    - `province`: Filter by province (optional).
+  - Example: `GET /schools?province=ภูเก็ต`
+- `GET /`: API Information.
+- `GET /openapi`: OpenAPI documentation.
+
 ## Project Structure
 
 - `src/index.ts`: API server entry point.
@@ -64,6 +66,6 @@ bun run scrape
 
 This project uses **GitHub Actions** to automatically update the school data.
 
-- The workflow runs daily at midnight UTC.
+- The workflow runs on the 1st of every 3rd month at midnight UTC.
 - It executes the scraper and commits any changes to the `dist/` directory back to the repository.
 - You can also manually trigger the "Update School Data" workflow from the Actions tab.
