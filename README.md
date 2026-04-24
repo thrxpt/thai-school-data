@@ -6,7 +6,7 @@ This project provides a tool to scrape Thai school information from Wikipedia an
 
 - **Live Scraping**: Fetches up-to-date school data directly from Wikipedia.
 - **REST API**: Serves school data via high-performance ElysiaJS endpoints.
-- **Data Export**: Script to scrape and save all school data to JSON files.
+- **Data Export**: Script to scrape and save all school data to JSON and CSV files.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ bun install
 
 ### Data Preparation
 
-Before running the API, you must scrape the data from Wikipedia. This will generate the necessary JSON files in the `dist/` directory.
+Before running the API, you must scrape the data from Wikipedia. This will generate the necessary data files in the `dist/` directory.
 
 ```bash
 bun run scrape
@@ -30,10 +30,13 @@ bun run scrape
 
 **Output:**
 
-- `dist/schools.json`: Combined list of all schools (pretty).
-- `dist/schools.min.json`: Combined list of all schools (minified).
-- `dist/provinces/[province].json`: Individual JSON files for each province (pretty).
-- `dist/provinces/[province].min.json`: Individual JSON files for each province (minified).
+- **JSON:**
+  - `dist/json/schools.json`: Combined list of all schools (pretty).
+  - `dist/json/schools.min.json`: Combined list of all schools (minified).
+  - `dist/json/provinces/[province].json`: Individual JSON files for each province.
+- **CSV:**
+  - `dist/csv/schools.csv`: Combined list of all schools.
+  - `dist/csv/provinces/[province].csv`: Individual CSV files for each province.
 
 ### Run API Server
 
