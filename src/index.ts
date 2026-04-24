@@ -4,13 +4,13 @@ import type { School } from "./types";
 
 let schools: School[] = [];
 try {
-  const file = Bun.file("dist/schools.min.json");
+  const file = Bun.file("dist/json/schools.min.json");
   if (await file.exists()) {
     schools = await file.json();
     console.log(`Loaded ${schools.length} schools.`);
   } else {
     console.warn(
-      "dist/schools.min.json not found. Run 'bun run scrape' first.",
+      "dist/json/schools.min.json not found. Run 'bun run scrape' first.",
     );
   }
 } catch (error) {
@@ -60,7 +60,7 @@ if (schools.length === 0) {
   try {
     console.log("Fetching data from GitHub...");
     const response = await fetch(
-      "https://raw.githubusercontent.com/thrxpt/thai-school-data-api/main/dist/schools.min.json",
+      "https://raw.githubusercontent.com/thrxpt/thai-school-data-api/main/dist/json/schools.min.json",
     );
     if (response.ok) {
       schools = await response.json();
